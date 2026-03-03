@@ -1,0 +1,21 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Uster Waste Collection",
+        "description": "Enter your street name exactly as listed on uster.ch (e.g. \"Bahnhofstrasse 1 - 17\").",
+        "data": {
+          "street": "Street name",
+          "count": "Number of upcoming collections to show"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to uster.ch. Check your internet connection.",
+      "street_not_found": "Street not found. Use the exact name shown on uster.ch."
+    },
+    "abort": {
+      "already_configured": "This street is already configured."
+    }
+  }
+}

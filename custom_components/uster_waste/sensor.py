@@ -19,6 +19,7 @@ from typing import Any
 import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA, SensorEntity
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_NAME, CONF_SCAN_INTERVAL
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import config_validation as cv
@@ -67,6 +68,22 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 # ---------------------------------------------------------------------------
 # Platform setup
 # ---------------------------------------------------------------------------
+
+async def async_setup_entry(
+    hass: HomeAssistant,
+    entry: ConfigEntry,
+    async_add_entities: AddEntitiesCallback,
+) -> None:
+    """Set up Uster Waste sensor from a config entry (UI flow)."""
+    street: str = entry.data["street"]
+    count: int = entry.data.get("count", DEFAULT_COUNT)
+
+    session = async_get_clientsession(hass)
+    coordinator = UsterWasteCoordinator(hass, session, street, DEFAULT_SCAN_INTERVAL)
+    await coordinator.async_refresh()
+
+    async_add_entities([UsterWasteSensor(coordinator, street, street, count)], True)
+
 
 async def async_setup_platform(
     hass: HomeAssistant,
