@@ -1,0 +1,1 @@
+"""Uster Waste Collection integration."""

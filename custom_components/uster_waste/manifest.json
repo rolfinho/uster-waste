@@ -1,0 +1,9 @@
+{
+  "domain": "uster_waste",
+  "name": "Uster Waste Collection",
+  "codeowners": [],
+  "dependencies": [],
+  "requirements": [],
+  "iot_class": "cloud_polling",
+  "version": "1.0.0"
+}
